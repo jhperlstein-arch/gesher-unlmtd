@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gesher Investor Network</title>
+  <meta name="description" content="An invitation-based network connecting qualified American Jewish investors with carefully selected Israeli real estate opportunities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-2: #15283d;
+      --ink: #1c2530;
+      --muted: #5b6673;
+      --line: #e3ddd0;
+      --cream: #faf7f1;
+      --paper: #ffffff;
+      --gold: #b8924a;
+      --gold-2: #d4b47a;
+      --ok: #2f7a4f;
+      --err: #a33a3a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--cream); color: var(--ink);
+      font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0; }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 600; color: var(--gold); }
+
+    /* Nav */
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(13,27,42,.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em; }
+    .brand-mark { width: 30px; height: 30px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: #c9d1db; text-decoration: none; font-size: 14px; }
+    .nav-links a:hover { color: #fff; }
+    .btn { display: inline-block; border: 0; cursor: pointer; text-decoration: none; font: 600 14px/1 Inter, sans-serif; letter-spacing: .03em; padding: 14px 22px; border-radius: 2px; transition: background .2s, color .2s, transform .1s; }
+    .btn:active { transform: translateY(1px); }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: #a37f3c; }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); }
+    .btn-ghost:hover { border-color: #fff; }
+    .nav-links .btn { padding: 10px 16px; color: #fff; }
+
+    /* Hero */
+    .hero { background: radial-gradient(1200px 600px at 80% -10%, #1f3a57 0%, transparent 60%), linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 110px 0 120px; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; right: -120px; bottom: -120px; width: 480px; height: 480px; border: 1px solid rgba(212,180,122,.18); border-radius: 50%; }
+    .hero h1 { font-size: clamp(40px, 6vw, 68px); max-width: 820px; margin: 18px 0 22px; }
+    .hero h1 em { color: var(--gold-2); font-style: italic; }
+    .hero p.lead { font-size: 19px; color: #c9d1db; max-width: 640px; margin: 0 0 36px; }
+    .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 72px; max-width: 720px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 28px; }
+    .hero-stats strong { display: block; font-family: "Cormorant Garamond", serif; font-size: 28px; color: var(--gold-2); font-weight: 600; }
+    .hero-stats span { font-size: 13px; color: #9fabb8; }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    .section-head { max-width: 680px; margin-bottom: 56px; }
+    .section-head h2 { font-size: clamp(32px, 4vw, 46px); margin: 12px 0 16px; }
+    .section-head p { color: var(--muted); font-size: 17px; margin: 0; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .compare { background: var(--paper); border: 1px solid var(--line); padding: 36px; }
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+    .compare-row:last-child { border-bottom: 0; }
+    .compare-row.head { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 600; color: var(--muted); padding-top: 0; }
+    .compare-row .us { color: var(--navy); font-weight: 500; }
+    .compare-row .them { color: #8a939d; }
+
+    .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .pillar { background: var(--paper); padding: 36px 28px; }
+    .pillar .num { font-family: "Cormorant Garamond", serif; color: var(--gold); font-size: 20px; font-weight: 600; }
+    .pillar h3 { font-size: 24px; margin: 14px 0 10px; }
+    .pillar p { color: var(--muted); font-size: 15px; margin: 0; }
+
+    .dark { background: var(--navy); color: #fff; }
+    .dark .section-head p { color: #9fabb8; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; counter-reset: step; }
+    .step { border-top: 1px solid rgba(212,180,122,.4); padding-top: 24px; }
+    .step::before { counter-increment: step; content: "0" counter(step); font-family: "Cormorant Garamond", serif; font-size: 40px; color: var(--gold-2); display: block; line-height: 1; margin-bottom: 14px; }
+    .step h3 { font-size: 22px; margin-bottom: 8px; }
+    .step p { color: #9fabb8; font-size: 15px; margin: 0; }
+
+    .regions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .region { background: var(--paper); border: 1px solid var(--line); padding: 32px 26px; position: relative; transition: border-color .2s, transform .2s; }
+    .region:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .region .abbr { font-family: "Cormorant Garamond", serif; font-size: 44px; color: var(--gold); line-height: 1; font-weight: 600; }
+    .region h3 { font-size: 24px; margin: 14px 0 6px; }
+    .region p { color: var(--muted); font-size: 14px; margin: 0; }
+
+    /* Form */
+    .apply { background: linear-gradient(180deg, var(--cream) 0%, #f2ece0 100%); }
+    .apply-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+    .apply-copy ul { list-style: none; padding: 0; margin: 28px 0 0; }
+    .apply-copy li { padding: 12px 0 12px 28px; border-bottom: 1px solid var(--line); position: relative; font-size: 15px; }
+    .apply-copy li::before { content: ""; position: absolute; left: 0; top: 21px; width: 12px; height: 1px; background: var(--gold); }
+    form.card { background: var(--paper); border: 1px solid var(--line); padding: 40px; box-shadow: 0 30px 60px -30px rgba(13,27,42,.25); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .field label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .field input, .field select, .field textarea {
+      font: inherit; font-size: 15px; color: var(--ink); background: var(--cream);
+      border: 1px solid var(--line); border-radius: 2px; padding: 12px 14px; outline: none; transition: border-color .15s, background .15s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); background: #fff; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); margin: 4px 0 24px; }
+    .check input { margin-top: 4px; accent-color: var(--gold); }
+    .hp { position: absolute; left: -9999px; }
+    form.card .btn { width: 100%; padding: 16px; font-size: 15px; }
+    form.card .btn[disabled] { opacity: .6; cursor: wait; }
+    .status { margin-top: 16px; font-size: 14px; padding: 12px 14px; border-left: 3px solid; }
+    .status.ok { color: var(--ok); border-color: var(--ok); background: #eef6f1; }
+    .status.err { color: var(--err); border-color: var(--err); background: #f9eeee; }
+    .success { text-align: center; padding: 30px 10px; }
+    .success h3 { font-size: 32px; margin: 10px 0; }
+    .success p { color: var(--muted); }
+
+    footer { background: var(--navy); color: #8995a3; font-size: 13px; padding: 48px 0; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    footer .disclaimer { max-width: 640px; line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      .split, .apply-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pillars, .steps, .regions { grid-template-columns: 1fr 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      section { padding: 72px 0; }
+      .hero { padding: 72px 0 80px; }
+      .pillars, .steps, .regions, .row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; gap: 16px; }
+      form.card, .compare { padding: 24px; }
+      .compare-row { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React 18 + htm (JSX-like templates, no build step needed) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js" crossorigin></script>
+
+  <script>
+    // ============================================================
+    // Paste your Web3Forms access key here (get one free at https://web3forms.com)
+    const WEB3FORMS_ACCESS_KEY = "6aa2bf1f-1780-4253-9716-a97f5f8647a4";
+    // ============================================================
+
+    const { useState } = React;
+    const html = htm.bind(React.createElement);
+
+    const BrandMark = () => html`
+      <svg className="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M3 24 C 9 10, 23 10, 29 24" stroke="#d4b47a" stroke-width="1.6"/>
+        <path d="M3 24 H29" stroke="#d4b47a" stroke-width="1.6"/>
+        <path d="M10 24 V16 M16 24 V13.5 M22 24 V16" stroke="#d4b47a" stroke-width="1.2"/>
+      </svg>`;
+
+    function Nav() {
+      return html`
+        <nav>
+          <div className="wrap">
+            <a className="brand" href="#top"><${BrandMark} /> Gesher</a>
+            <div className="nav-links">
+              <a href="#approach">Approach</a>
+              <a href="#process">Process</a>
+              <a href="#communities">Communities</a>
+              <a className="btn btn-gold" href="#apply">Request Invitation</a>
+            </div>
+          </div>
+        </nav>`;
+    }
+
+    function Hero() {
+      return html`
+        <header className="hero" id="top">
+          <div className="wrap">
+            <div className="eyebrow">By Invitation Only</div>
+            <h1>The trusted bridge between American investors and <em>Israeli real estate.</em></h1>
+            <p className="lead">An exclusive network connecting financially qualified American Jewish investors with carefully selected opportunities from vetted Israeli developers.</p>
+            <div className="ctas">
+              <a className="btn btn-gold" href="#apply">Request an Invitation</a>
+              <a className="btn btn-ghost" href="#approach">Our Approach</a>
+            </div>
+            <div className="hero-stats">
+              <div><strong>Invitation-based</strong><span>Qualified investors only</span></div>
+              <div><strong>Curated</strong><span>Selectively sourced opportunities</span></div>
+              <div><strong>Long-term</strong><span>Relationships over transactions</span></div>
+            </div>
+          </div>
+        </header>`;
+    }
+
+    function Approach() {
+      const rows = [
+        ["Long-term investor relationships", "One-off transactions"],
+        ["Curated, pre-vetted opportunities", "Broad listings inventory"],
+        ["Direct developer partnerships", "Third-party intermediaries"],
+        ["Investor-first alignment", "Commission-first incentives"],
+      ];
+      return html`
+        <section id="approach">
+          <div className="wrap split">
+            <div>
+              <div className="eyebrow">Our Approach</div>
+              <div className="section-head" style=${{ marginBottom: 0 }}>
+                <h2>Not a real estate agency. A trusted connection.</h2>
+                <p>We are building a lasting network around people, not listings. Our role is to understand each investor's goals, source the right opportunities in Israel, and stand beside them from first conversation to closing and beyond.</p>
+              </div>
+            </div>
+            <div className="compare">
+              <div className="compare-row head"><div>Gesher</div><div>Traditional agency</div></div>
+              ${rows.map(([us, them]) => html`
+                <div className="compare-row" key=${us}><div className="us">${us}</div><div className="them">${them}</div></div>`)}
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function Pillars() {
+      const items = [
+        ["Investor Relationships", "A private, vetted community of qualified investors who value discretion, trust and long-term partnership."],
+        ["Deal Sourcing", "Rigorous on-the-ground selection of residential and commercial opportunities across Israel."],
+        ["Developer Partnerships", "Direct relationships with established Israeli developers, giving members early and preferred access."],
+        ["Property Sales", "End-to-end guidance through acquisition, with trusted legal, tax and financing partners on both sides."],
+      ];
+      return html`
+        <section style=${{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="pillars">
+              ${items.map(([t, d], i) => html`
+                <div className="pillar" key=${t}>
+                  <div className="num">0${i + 1}</div>
+                  <h3>${t}</h3>
+                  <p>${d}</p>
+                </div>`)}
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function Process() {
+      const steps = [
+        ["Request", "Submit a confidential request to join. Membership is by invitation and qualification."],
+        ["Introduction", "A private conversation to understand your goals, timeline and investment profile."],
+        ["Curated Access", "Receive selected opportunities matched to your criteria, with full diligence materials."],
+        ["Partnership", "We guide you through acquisition and remain your trusted partner in Israel long term."],
+      ];
+      return html`
+        <section className="dark" id="process">
+          <div className="wrap">
+            <div className="section-head">
+              <div className="eyebrow">How It Works</div>
+              <h2>A private, considered process.</h2>
+              <p>Every member relationship begins with a conversation, not a sales pitch.</p>
+            </div>
+            <div className="steps">
+              ${steps.map(([t, d]) => html`<div className="step" key=${t}><h3>${t}</h3><p>${d}</p></div>`)}
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function Communities() {
+      const regions = [
+        ["NY", "New York", "Manhattan, Brooklyn, Long Island & Westchester"],
+        ["NJ", "New Jersey", "Bergen County, Lakewood, Teaneck & beyond"],
+        ["FL", "Florida", "Miami, Boca Raton, Palm Beach & Aventura"],
+        ["CA", "California", "Los Angeles, Beverly Hills & the Bay Area"],
+      ];
+      return html`
+        <section id="communities">
+          <div className="wrap">
+            <div className="section-head">
+              <div className="eyebrow">Our Communities</div>
+              <h2>Rooted in the heart of American Jewish life.</h2>
+              <p>We are launching with investors in four of the most vibrant Jewish communities in the United States.</p>
+            </div>
+            <div className="regions">
+              ${regions.map(([a, n, d]) => html`
+                <div className="region" key=${a}><div className="abbr">${a}</div><h3>${n}</h3><p>${d}</p></div>`)}
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function ApplyForm() {
+      const empty = { name: "", email: "", phone: "", state: "", range: "", interest: "", message: "", qualified: false, botcheck: false };
+      const [form, setForm] = useState(empty);
+      const [status, setStatus] = useState("idle"); // idle | sending | done | error
+      const [error, setError] = useState("");
+
+      const set = (k) => (e) => setForm({ ...form, [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value });
+
+      async function onSubmit(e) {
+        e.preventDefault();
+        if (form.botcheck) return;
+        setStatus("sending"); setError("");
+        try {
+          const res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_ACCESS_KEY,
+              subject: `New Invitation Request — ${form.name} (${form.state})`,
+              from_name: "Gesher Investor Network",
+              name: form.name,
+              email: form.email,
+              phone: form.phone,
+              state: form.state,
+              investment_range: form.range,
+              primary_interest: form.interest,
+              qualified_investor: form.qualified ? "Yes" : "No",
+              message: form.message,
+              botcheck: false,
+            }),
+          });
+          const data = await res.json();
+          if (data.success) { setStatus("done"); setForm(empty); }
+          else { setStatus("error"); setError(data.message || "Something went wrong. Please try again."); }
+        } catch (err) {
+          setStatus("error"); setError("Network error. Please check your connection and try again.");
+        }
+      }
+
+      if (status === "done") {
+        return html`
+          <div className="card" style=${{ background: "#fff", border: "1px solid var(--line)", padding: 40 }}>
+            <div className="success">
+              <div className="eyebrow">Request Received</div>
+              <h3>Thank you.</h3>
+              <p>A member of our team will be in touch personally and confidentially within a few business days.</p>
+              <button className="btn btn-gold" style=${{ marginTop: 12 }} onClick=${() => setStatus("idle")}>Submit another request</button>
+            </div>
+          </div>`;
+      }
+
+      return html`
+        <form className="card" onSubmit=${onSubmit}>
+          <input type="checkbox" className="hp" tabIndex="-1" autoComplete="off" checked=${form.botcheck} onChange=${set("botcheck")} aria-hidden="true" />
+          <div className="row">
+            <div className="field"><label htmlFor="name">Full name</label>
+              <input id="name" required value=${form.name} onChange=${set("name")} autoComplete="name" /></div>
+            <div className="field"><label htmlFor="email">Email</label>
+              <input id="email" type="email" required value=${form.email} onChange=${set("email")} autoComplete="email" /></div>
+          </div>
+          <div className="row">
+            <div className="field"><label htmlFor="phone">Phone</label>
+              <input id="phone" type="tel" value=${form.phone} onChange=${set("phone")} autoComplete="tel" /></div>
+            <div className="field"><label htmlFor="state">State</label>
+              <select id="state" required value=${form.state} onChange=${set("state")}>
+                <option value="" disabled>Select…</option>
+                <option>New York</option><option>New Jersey</option><option>Florida</option><option>California</option><option>Other</option>
+              </select></div>
+          </div>
+          <div className="row">
+            <div className="field"><label htmlFor="range">Investment range</label>
+              <select id="range" required value=${form.range} onChange=${set("range")}>
+                <option value="" disabled>Select…</option>
+                <option>$250K – $500K</option><option>$500K – $1M</option><option>$1M – $5M</option><option>$5M+</option>
+              </select></div>
+            <div className="field"><label htmlFor="interest">Primary interest</label>
+              <select id="interest" value=${form.interest} onChange=${set("interest")}>
+                <option value="">Select…</option>
+                <option>Residential</option><option>Commercial</option><option>Pre-construction / development</option><option>Personal / family home</option><option>Open to all</option>
+              </select></div>
+          </div>
+          <div className="field"><label htmlFor="message">Tell us about your goals</label>
+            <textarea id="message" value=${form.message} onChange=${set("message")} placeholder="Timeline, preferred cities in Israel, objectives…"></textarea></div>
+          <label className="check">
+            <input type="checkbox" required checked=${form.qualified} onChange=${set("qualified")} />
+            <span>I confirm I am a financially qualified investor and consent to being contacted confidentially.</span>
+          </label>
+          <button className="btn btn-gold" type="submit" disabled=${status === "sending"}>
+            ${status === "sending" ? "Sending…" : "Request an Invitation"}
+          </button>
+          ${status === "error" && html`<div className="status err" role="alert">${error}</div>`}
+        </form>`;
+    }
+
+    function Apply() {
+      return html`
+        <section className="apply" id="apply">
+          <div className="wrap apply-grid">
+            <div className="apply-copy">
+              <div className="eyebrow">Membership</div>
+              <div className="section-head" style=${{ marginBottom: 0 }}>
+                <h2>Request an invitation.</h2>
+                <p>Membership is limited and extended to financially qualified investors. All inquiries are handled personally and in strict confidence.</p>
+              </div>
+              <ul>
+                <li>Private introduction call with our team</li>
+                <li>Early access to curated developer opportunities</li>
+                <li>Trusted legal, tax and financing partners</li>
+                <li>Ongoing support in Israel after acquisition</li>
+              </ul>
+            </div>
+            <${ApplyForm} />
+          </div>
+        </section>`;
+    }
+
+    function Footer() {
+      return html`
+        <footer>
+          <div className="wrap">
+            <div>
+              <a className="brand" href="#top"><${BrandMark} /> Gesher</a>
+              <div style=${{ marginTop: 10 }}>© ${new Date().getFullYear()} Gesher Investor Network</div>
+            </div>
+            <p className="disclaimer">This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security or real estate interest. Opportunities are made available only to qualified investors and are subject to individual review and applicable law.</p>
+          </div>
+        </footer>`;
+    }
+
+    function App() {
+      return html`<${Nav} /><${Hero} /><${Approach} /><${Pillars} /><${Process} /><${Communities} /><${Apply} /><${Footer} />`;
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+  </script>
+</body>
+</html>
