@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gesher Investor Network</title>
-  <meta name="description" content="An invitation-based network connecting qualified American Jewish investors with carefully selected Israeli real estate opportunities." />
+  <title>Gesher — Israeli Real Estate Advisory for American Buyers</title>
+  <meta name="description" content="Gesher helps American buyers understand the Israeli property market, plan a purchase around their goals, and work with vetted, independent Israeli legal, tax and mortgage professionals." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -31,44 +29,69 @@
       font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+    body.modal-open { overflow: hidden; }
     h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0; }
     a { color: inherit; }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px;  }
+    button { font: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 600; color: var(--gold); }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
     /* Nav */
     nav { position: sticky; top: 0; z-index: 10; background: rgba(13,27,42,.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.06); }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
     .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em; }
     .brand-mark { width: 30px; height: 30px; }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links { display: flex; gap: 26px; align-items: center; }
     .nav-links a { color: #c9d1db; text-decoration: none; font-size: 14px; }
     .nav-links a:hover { color: #fff; }
-    .btn { display: inline-block; border: 0; cursor: pointer; text-decoration: none; font: 600 14px/1 Inter, sans-serif; letter-spacing: .03em; padding: 14px 22px; border-radius: 2px; transition: background .2s, color .2s, transform .1s; }
+    .btn { display: inline-block; border: 0; cursor: pointer; text-decoration: none; font: 600 14px/1 Inter, sans-serif; letter-spacing: .03em; padding: 14px 22px; border-radius: 2px; transition: background .2s, color .2s, border-color .2s, transform .1s; }
     .btn:active { transform: translateY(1px); }
     .btn-gold { background: var(--gold); color: #fff; }
     .btn-gold:hover { background: #a37f3c; }
     .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); }
     .btn-ghost:hover { border-color: #fff; }
+    .btn-line { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+    .btn-line:hover { background: var(--navy); color: #fff; }
     .nav-links .btn { padding: 10px 16px; color: #fff; }
 
     /* Hero */
     .hero { background: radial-gradient(1200px 600px at 80% -10%, #1f3a57 0%, transparent 60%), linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 110px 0 120px; position: relative; overflow: hidden; }
     .hero::after { content: ""; position: absolute; right: -120px; bottom: -120px; width: 480px; height: 480px; border: 1px solid rgba(212,180,122,.18); border-radius: 50%; }
-    .hero h1 { font-size: clamp(40px, 6vw, 68px); max-width: 820px; margin: 18px 0 22px; }
+    .hero h1 { font-size: clamp(40px, 6vw, 68px); max-width: 860px; margin: 18px 0 22px; }
     .hero h1 em { color: var(--gold-2); font-style: italic; }
-    .hero p.lead { font-size: 19px; color: #c9d1db; max-width: 640px; margin: 0 0 36px; }
-    .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 72px; max-width: 720px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 28px; }
+    .hero p.lead { font-size: 19px; color: #c9d1db; max-width: 660px; margin: 0 0 36px; }
+    .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 72px; max-width: 760px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 28px; }
     .hero-stats strong { display: block; font-family: "Cormorant Garamond", serif; font-size: 28px; color: var(--gold-2); font-weight: 600; }
     .hero-stats span { font-size: 13px; color: #9fabb8; }
 
     /* Sections */
-    section { padding: 100px 0; }
+    section { padding: 100px 0; scroll-margin-top: 68px; }
     .section-head { max-width: 680px; margin-bottom: 56px; }
     .section-head h2 { font-size: clamp(32px, 4vw, 46px); margin: 12px 0 16px; }
     .section-head p { color: var(--muted); font-size: 17px; margin: 0; }
+    .cream { background: var(--cream); }
 
+    /* Paths (persona tabs) */
+    .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 0; }
+    .tab { text-align: left; background: var(--paper); border: 1px solid var(--line); border-bottom: 0; padding: 22px 24px; cursor: pointer; color: var(--muted); transition: background .2s, color .2s; position: relative; }
+    .tab .tnum { font-family: "Cormorant Garamond", serif; color: var(--gold); font-size: 18px; font-weight: 600; display: block; }
+    .tab .tlabel { font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+    .tab:hover { background: #fdfbf7; }
+    .tab[aria-selected="true"] { background: var(--navy); color: #c9d1db; border-color: var(--navy); }
+    .tab[aria-selected="true"] .tlabel { color: #fff; }
+    .tab[aria-selected="true"] .tnum { color: var(--gold-2); }
+    .panel { background: var(--navy); color: #fff; padding: 48px; display: grid; grid-template-columns: 7fr 5fr; gap: 48px; }
+    .panel blockquote { margin: 0; font-family: "Cormorant Garamond", serif; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.2; color: #fff; }
+    .panel blockquote::before { content: ""; display: block; width: 40px; height: 1px; background: var(--gold-2); margin-bottom: 22px; }
+    .panel p { color: #c9d1db; margin: 22px 0 28px; }
+    .panel ul { list-style: none; margin: 0; padding: 0; }
+    .panel li { padding: 13px 0 13px 26px; border-bottom: 1px solid rgba(255,255,255,.1); position: relative; font-size: 15px; color: #dfe5ec; }
+    .panel li::before { content: ""; position: absolute; left: 0; top: 24px; width: 12px; height: 1px; background: var(--gold-2); }
+    .panel .eyebrow { color: var(--gold-2); margin-bottom: 8px; }
+
+    /* Approach compare */
     .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .compare { background: var(--paper); border: 1px solid var(--line); padding: 36px; }
     .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
@@ -83,66 +106,166 @@
     .pillar h3 { font-size: 24px; margin: 14px 0 10px; }
     .pillar p { color: var(--muted); font-size: 15px; margin: 0; }
 
+    /* Budget explorer */
+    .pills { display: inline-flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--navy); margin-bottom: 32px; }
+    .pill { background: transparent; border: 0; border-right: 1px solid var(--navy); padding: 14px 26px; cursor: pointer; font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; color: var(--navy); transition: background .2s, color .2s; }
+    .pill:last-child { border-right: 0; }
+    .pill:hover { background: #f2ece0; }
+    .pill[aria-pressed="true"] { background: var(--navy); color: var(--gold-2); }
+    .budget-card { background: var(--paper); border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(13,27,42,.2); }
+    .budget-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 22px 36px; border-bottom: 1px solid var(--line); }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-2); padding: 6px 10px; }
+    .budget-top h3 { font-size: 28px; }
+    .budget-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--line); }
+    .budget-body > div { background: var(--paper); padding: 28px 36px; }
+    .budget-body h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .budget-body ul { margin: 0; padding: 0; list-style: none; }
+    .budget-body li { padding: 7px 0; font-size: 15px; border-bottom: 1px dashed var(--line); }
+    .budget-body li:last-child { border-bottom: 0; }
+    .budget-body li strong { display: block; color: var(--navy); font-weight: 600; }
+    .budget-body li span { color: var(--muted); font-size: 13px; }
+    .budget-foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding: 22px 36px; border-top: 1px solid var(--line); background: var(--cream); }
+    .budget-foot p { margin: 0; font-size: 13px; color: var(--muted); max-width: 640px; }
+
+    /* Journey (dark) */
     .dark { background: var(--navy); color: #fff; }
     .dark .section-head p { color: #9fabb8; }
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; counter-reset: step; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 32px; counter-reset: step; }
     .step { border-top: 1px solid rgba(212,180,122,.4); padding-top: 24px; }
     .step::before { counter-increment: step; content: "0" counter(step); font-family: "Cormorant Garamond", serif; font-size: 40px; color: var(--gold-2); display: block; line-height: 1; margin-bottom: 14px; }
     .step h3 { font-size: 22px; margin-bottom: 8px; }
     .step p { color: #9fabb8; font-size: 15px; margin: 0; }
 
-    .regions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .region { background: var(--paper); border: 1px solid var(--line); padding: 32px 26px; position: relative; transition: border-color .2s, transform .2s; }
-    .region:hover { border-color: var(--gold); transform: translateY(-2px); }
-    .region .abbr { font-family: "Cormorant Garamond", serif; font-size: 44px; color: var(--gold); line-height: 1; font-weight: 600; }
-    .region h3 { font-size: 24px; margin: 14px 0 6px; }
-    .region p { color: var(--muted); font-size: 14px; margin: 0; }
+    /* FAQ */
+    .guide-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+    .cats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cat { background: var(--paper); border: 1px solid var(--line); padding: 9px 14px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; border-radius: 2px; }
+    .cat:hover { border-color: var(--gold); color: var(--ink); }
+    .cat[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .search { position: relative; flex: 0 1 300px; }
+    .search input { width: 100%; font: inherit; font-size: 14px; padding: 10px 14px; border: 1px solid var(--line); background: var(--paper); border-radius: 2px; outline: none; }
+    .search input:focus { border-color: var(--gold); }
+    .faq-group { margin-bottom: 36px; }
+    .faq-group h3 { font-size: 24px; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .faq-group h3 small { font-family: Inter, sans-serif; font-size: 12px; letter-spacing: .14em; color: var(--gold); font-weight: 600; }
+    .faq { background: var(--paper); border: 1px solid var(--line); }
+    .qa + .qa { border-top: 1px solid var(--line); }
+    .qa > button { width: 100%; display: flex; justify-content: space-between; gap: 20px; align-items: center; text-align: left; background: none; border: 0; padding: 20px 26px; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--ink); }
+    .qa > button:hover { color: var(--navy); background: #fdfbf7; }
+    .qa > button .qn { color: var(--gold); font-family: "Cormorant Garamond", serif; font-size: 18px; font-weight: 600; margin-right: 12px; }
+    .qa .chev { flex: none; width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 50%; position: relative; transition: transform .2s; }
+    .qa .chev::before, .qa .chev::after { content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 1px; background: var(--ink); transform: translate(-50%,-50%); }
+    .qa .chev::after { transform: translate(-50%,-50%) rotate(90deg); transition: transform .2s; }
+    .qa.open .chev::after { transform: translate(-50%,-50%) rotate(0deg); }
+    .answer { padding: 0 26px 24px 56px; color: #3b4652; font-size: 15px; max-width: 860px; }
+    .answer p { margin: 0 0 12px; }
+    .answer ul { margin: 0 0 12px; padding-left: 18px; }
+    .answer li { margin-bottom: 6px; }
+    .answer ol.mini { list-style: none; padding: 0; margin: 8px 0 12px; counter-reset: mini; }
+    .answer ol.mini li { counter-increment: mini; position: relative; padding: 0 0 14px 38px; margin: 0; border-left: 1px solid var(--line); margin-left: 12px; }
+    .answer ol.mini li:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .answer ol.mini li::before { content: counter(mini); position: absolute; left: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: var(--gold-2); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+    .answer ol.mini strong { color: var(--navy); }
+    .empty { padding: 28px; color: var(--muted); background: var(--paper); border: 1px solid var(--line); }
+    mark { background: #f3e6c8; color: inherit; padding: 0 1px; }
 
-    /* Form */
+    /* Brief form */
     .apply { background: linear-gradient(180deg, var(--cream) 0%, #f2ece0 100%); }
     .apply-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
     .apply-copy ul { list-style: none; padding: 0; margin: 28px 0 0; }
     .apply-copy li { padding: 12px 0 12px 28px; border-bottom: 1px solid var(--line); position: relative; font-size: 15px; }
     .apply-copy li::before { content: ""; position: absolute; left: 0; top: 21px; width: 12px; height: 1px; background: var(--gold); }
-    form.card { background: var(--paper); border: 1px solid var(--line); padding: 40px; box-shadow: 0 30px 60px -30px rgba(13,27,42,.25); }
+    .card { background: var(--paper); border: 1px solid var(--line); padding: 40px; box-shadow: 0 30px 60px -30px rgba(13,27,42,.25); }
+    .progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+    .progress span { height: 3px; background: var(--line); transition: background .3s; }
+    .progress span.on { background: var(--gold); }
+    .step-label { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 26px; }
+    .step-label b { color: var(--navy); }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
-    .field label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .field > label, .field > .flabel { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .field .opt { text-transform: none; letter-spacing: 0; font-weight: 400; }
     .field input, .field select, .field textarea {
       font: inherit; font-size: 15px; color: var(--ink); background: var(--cream);
       border: 1px solid var(--line); border-radius: 2px; padding: 12px 14px; outline: none; transition: border-color .15s, background .15s;
     }
-    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); background: #fff; }
-    .field textarea { resize: vertical; min-height: 110px; }
-    .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); margin: 4px 0 24px; }
+    .field input:focus, .field select:focus { border-color: var(--gold); background: #fff; }
+    .field .bad { border-color: var(--err); }
+    .ferr { color: var(--err); font-size: 13px; }
+    .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choices.three { grid-template-columns: repeat(3, 1fr); }
+    .choices.five { grid-template-columns: repeat(5, 1fr); }
+    .choice { background: var(--cream); border: 1px solid var(--line); border-radius: 2px; padding: 13px 14px; font-size: 14px; text-align: left; cursor: pointer; color: var(--ink); transition: border-color .15s, background .15s; }
+    .choices.five .choice { text-align: center; padding: 13px 6px; }
+    .choice:hover { border-color: var(--gold-2); }
+    .choice[aria-pressed="true"], .choice[aria-checked="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .choice small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .choice[aria-checked="true"] small { color: #9fabb8; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { background: var(--cream); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; cursor: pointer; color: var(--ink); }
+    .chip:hover { border-color: var(--gold-2); }
+    .chip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); margin: 4px 0 6px; }
     .check input { margin-top: 4px; accent-color: var(--gold); }
-    .hp { position: absolute; left: -9999px; }
-    form.card .btn { width: 100%; padding: 16px; font-size: 15px; }
-    form.card .btn[disabled] { opacity: .6; cursor: wait; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .form-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; }
+    .form-nav .btn-gold { flex: 1; padding: 16px; font-size: 15px; }
+    .form-nav .btn-line { padding: 16px 22px; }
+    .btn[disabled] { opacity: .6; cursor: wait; }
     .status { margin-top: 16px; font-size: 14px; padding: 12px 14px; border-left: 3px solid; }
-    .status.ok { color: var(--ok); border-color: var(--ok); background: #eef6f1; }
     .status.err { color: var(--err); border-color: var(--err); background: #f9eeee; }
     .success { text-align: center; padding: 30px 10px; }
     .success h3 { font-size: 32px; margin: 10px 0; }
     .success p { color: var(--muted); }
 
-    footer { background: var(--navy); color: #8995a3; font-size: 13px; padding: 48px 0; }
+    /* Consult CTA */
+    .consult { background: radial-gradient(900px 500px at 10% 120%, #1f3a57 0%, transparent 60%), var(--navy); color: #fff; text-align: center; }
+    .consult h2 { font-size: clamp(32px, 4.4vw, 50px); max-width: 820px; margin: 14px auto 18px; }
+    .consult p { color: #c9d1db; max-width: 620px; margin: 0 auto 34px; font-size: 17px; }
+    .consult .ctas { justify-content: center; }
+    .consult .fine { font-size: 13px; color: #8995a3; margin: 22px auto 0; }
+
+    /* Modal */
+    .backdrop { position: fixed; inset: 0; background: rgba(13,27,42,.7); z-index: 50; display: grid; place-items: center; padding: 16px; }
+    .modal { background: var(--paper); width: min(760px, 100%); max-height: calc(100vh - 32px); display: flex; flex-direction: column; border-top: 3px solid var(--gold); }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-bottom: 1px solid var(--line); }
+    .modal-head h3 { font-size: 24px; }
+    .x { background: none; border: 0; font-size: 26px; line-height: 1; cursor: pointer; color: var(--muted); padding: 4px 8px; }
+    .modal iframe { width: 100%; height: min(680px, calc(100vh - 120px)); border: 0; }
+
+    footer { background: var(--navy); color: #8995a3; font-size: 13px; padding: 48px 0; border-top: 1px solid rgba(255,255,255,.06); }
     footer .wrap { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-    footer .disclaimer { max-width: 640px; line-height: 1.6; }
+    footer .disclaimer { max-width: 660px; line-height: 1.6; margin: 0; }
 
     @media (max-width: 900px) {
-      .split, .apply-grid { grid-template-columns: 1fr; gap: 40px; }
-      .pillars, .steps, .regions { grid-template-columns: 1fr 1fr; }
+      .split, .apply-grid, .panel { grid-template-columns: 1fr; gap: 40px; }
+      .pillars, .steps { grid-template-columns: 1fr 1fr; }
+      .budget-body { grid-template-columns: 1fr; }
       .nav-links a:not(.btn) { display: none; }
+      .panel { padding: 36px; }
+    }
+    @media (max-width: 680px) {
+      .tabs { grid-template-columns: 1fr; gap: 0; }
+      .tab { border-bottom: 1px solid var(--line); padding: 16px 20px; }
+      .choices.five { grid-template-columns: repeat(3, 1fr); }
+      .pills { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+      .pill { border-right: 0; border-bottom: 1px solid var(--navy); padding: 12px; }
+      .pill:nth-child(odd) { border-right: 1px solid var(--navy); }
+      .pill:nth-last-child(-n+2) { border-bottom: 0; }
     }
     @media (max-width: 560px) {
       .wrap { padding: 0 16px; }
       section { padding: 72px 0; }
       .hero { padding: 72px 0 80px; }
-      .pillars, .steps, .regions, .row { grid-template-columns: 1fr; }
+      .pillars, .steps, .row, .choices, .choices.three { grid-template-columns: 1fr; }
       .hero-stats { grid-template-columns: 1fr; gap: 16px; }
-      form.card, .compare { padding: 24px; }
+      .card, .compare { padding: 24px; }
+      .panel { padding: 28px 22px; }
+      .budget-top, .budget-body > div, .budget-foot { padding-left: 22px; padding-right: 22px; }
       .compare-row { font-size: 14px; }
+      .qa > button { padding: 18px 18px; }
+      .answer { padding: 0 18px 20px 18px; }
+      .search { flex-basis: 100%; }
     }
   </style>
 </head>
@@ -156,12 +279,30 @@
 
   <script>
     // ============================================================
-    // Paste your Web3Forms access key here (get one free at https://web3forms.com)
+    // CONFIG
+    // Lead capture: the Property Brief posts to /api/leads (Google Sheets — see SETUP_SHEETS.md).
+    // Web3Forms is also sent as a best-effort email notification; set to "" to disable.
     const WEB3FORMS_ACCESS_KEY = "6aa2bf1f-1780-4253-9716-a97f5f8647a4";
+    const LEADS_ENDPOINT = "/api/leads";
+    // Booking link for "Schedule an introductory call" (e.g. a Calendly / Cal.com / Google
+    // appointment page). Leave "" to send visitors to the Property Brief form instead.
+    const BOOKING_URL = "";
     // ============================================================
 
-    const { useState } = React;
+    const { useState, useEffect, useMemo, useRef } = React;
     const html = htm.bind(React.createElement);
+
+    // ---------- Shared option lists (keep in sync with api/leads.js) ----------
+    const OBJECTIVES = [
+      ["Investment", "Capital allocation & income"],
+      ["Second home", "Holidays, family, belonging"],
+      ["Future Aliyah or relocation", "Retirement or moving later"],
+      ["Exploring", "Still figuring it out"],
+    ];
+    const BUDGETS = ["$250k", "$400k", "$600k", "$1M+", "Custom"];
+    const LOCATIONS = ["Jerusalem", "Tel Aviv", "Herzliya", "Ra'anana", "Netanya", "Modi'in", "Beit Shemesh", "Haifa", "Not sure yet"];
+    const TIMELINES = ["Within 6 months", "6–12 months", "12+ months"];
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
     const BrandMark = () => html`
       <svg className="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -170,60 +311,148 @@
         <path d="M10 24 V16 M16 24 V13.5 M22 24 V16" stroke="#d4b47a" stroke-width="1.2"/>
       </svg>`;
 
+    const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
     function Nav() {
       return html`
         <nav>
           <div className="wrap">
             <a className="brand" href="#top"><${BrandMark} /> Gesher</a>
             <div className="nav-links">
-              <a href="#approach">Approach</a>
+              <a href="#paths">Your Path</a>
+              <a href="#budget">Budget Explorer</a>
               <a href="#process">Process</a>
-              <a href="#communities">Communities</a>
-              <a className="btn btn-gold" href="#apply">Request Invitation</a>
+              <a href="#guide">Buyer's Guide</a>
+              <a className="btn btn-gold" href="#brief">Get Your Property Brief</a>
             </div>
           </div>
         </nav>`;
     }
 
-    function Hero() {
+    function Hero({ onBook }) {
       return html`
         <header className="hero" id="top">
           <div className="wrap">
-            <div className="eyebrow">By Invitation Only</div>
-            <h1>The trusted bridge between American investors and <em>Israeli real estate.</em></h1>
-            <p className="lead">An exclusive network connecting financially qualified American Jewish investors with carefully selected opportunities from vetted Israeli developers.</p>
+            <div className="eyebrow">Israeli Real Estate Advisory for American Buyers</div>
+            <h1>Buying in Israel from America, <em>with clarity and confidence.</em></h1>
+            <p className="lead">Gesher is your advisory partner for the cross-border buying journey. We help you understand the Israeli market, plan a purchase around your goals, and work with vetted, independent Israeli legal, tax and mortgage professionals.</p>
             <div className="ctas">
-              <a className="btn btn-gold" href="#apply">Request an Invitation</a>
-              <a className="btn btn-ghost" href="#approach">Our Approach</a>
+              <a className="btn btn-gold" href="#brief">Start Your Israel Property Brief</a>
+              <button className="btn btn-ghost" onClick=${onBook}>Schedule an introductory call</button>
             </div>
             <div className="hero-stats">
-              <div><strong>Invitation-based</strong><span>Qualified investors only</span></div>
-              <div><strong>Curated</strong><span>Selectively sourced opportunities</span></div>
-              <div><strong>Long-term</strong><span>Relationships over transactions</span></div>
+              <div><strong>Goals first</strong><span>We start with your objectives, not with listings</span></div>
+              <div><strong>Independent</strong><span>Your own Israeli lawyer, tax and mortgage advisors</span></div>
+              <div><strong>Transparent</strong><span>How we are compensated, disclosed upfront</span></div>
             </div>
           </div>
         </header>`;
     }
 
+    // ---------- Personas ----------
+    const PERSONAS = [
+      {
+        id: "investor", label: "The American Investor", objective: "Investment",
+        motive: "Capital allocation · Income · Long-term wealth",
+        hook: "Explore Israeli real estate as part of your broader investment strategy.",
+        body: "For investors, Israeli property can be one component of a diversified, long-term plan — considered alongside an honest look at total costs, currency exposure, liquidity and management.",
+        points: [
+          "A realistic all-in cost model before you look at properties",
+          "Market education on rental demand and regulation, city by city",
+          "Introductions to independent legal, tax and mortgage professionals",
+          "Practical support for buying and managing from the US",
+        ],
+        cta: "Start an investor brief",
+      },
+      {
+        id: "family", label: "The American Jewish Family", objective: "Second home",
+        motive: "Second home · Holidays · Heritage & belonging",
+        hook: "A place in Israel. A connection that lasts.",
+        body: "A home for the chagim, for children studying or serving in Israel, or simply a place to belong. We help families find properties that fit how they actually plan to spend time there.",
+        points: [
+          "Neighborhood matching for community, synagogues and schools",
+          "Lock-and-leave practicality for part-year use",
+          "Guidance on renting the property while you are away",
+          "Coordination of the entire purchase from the US",
+        ],
+        cta: "Start a family brief",
+      },
+      {
+        id: "resident", label: "The Future Israeli Resident", objective: "Future Aliyah or relocation",
+        motive: "Aliyah · Retirement · Relocation",
+        hook: "Whether your plans are next year or ten years from now, finding your place in Israel can start today.",
+        body: "Buying ahead can be part of a thoughtful Aliyah, retirement or relocation plan — when timing, taxes and location are considered together.",
+        points: [
+          "Long-term livability: healthcare, transit, schools and community",
+          "How the timing of Aliyah can affect purchase tax",
+          "Options for renting the property until you move",
+          "Clarity that owning property does not confer residency or citizenship",
+        ],
+        cta: "Start a relocation brief",
+      },
+    ];
+
+    function Paths({ onStart }) {
+      const [active, setActive] = useState(0);
+      const p = PERSONAS[active];
+      const onKey = (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        const next = (active + (e.key === "ArrowRight" ? 1 : PERSONAS.length - 1)) % PERSONAS.length;
+        setActive(next);
+        document.getElementById("tab-" + PERSONAS[next].id)?.focus();
+      };
+      return html`
+        <section id="paths">
+          <div className="wrap">
+            <div className="section-head">
+              <div className="eyebrow">Find Your Path</div>
+              <h2>Every buyer arrives with a different reason.</h2>
+              <p>Choose the one that sounds most like you. Many of our conversations involve more than one, and that is exactly where planning begins.</p>
+            </div>
+            <div className="tabs" role="tablist" aria-label="Buyer paths" onKeyDown=${onKey}>
+              ${PERSONAS.map((x, i) => html`
+                <button key=${x.id} id=${"tab-" + x.id} className="tab" role="tab" aria-selected=${i === active}
+                  aria-controls="path-panel" tabIndex=${i === active ? 0 : -1} onClick=${() => setActive(i)}>
+                  <span className="tnum">0${i + 1}</span>
+                  <span className="tlabel">${x.label}</span>
+                </button>`)}
+            </div>
+            <div className="panel" id="path-panel" role="tabpanel" aria-labelledby=${"tab-" + p.id}>
+              <div>
+                <div className="eyebrow">${p.motive}</div>
+                <blockquote>${p.hook}</blockquote>
+                <p>${p.body}</p>
+                <button className="btn btn-gold" onClick=${() => onStart({ objective: p.objective })}>${p.cta}</button>
+              </div>
+              <div>
+                <div className="eyebrow">How Gesher helps</div>
+                <ul>${p.points.map((t) => html`<li key=${t}>${t}</li>`)}</ul>
+              </div>
+            </div>
+          </div>
+        </section>`;
+    }
+
     function Approach() {
       const rows = [
-        ["Long-term investor relationships", "One-off transactions"],
-        ["Curated, pre-vetted opportunities", "Broad listings inventory"],
-        ["Direct developer partnerships", "Third-party intermediaries"],
-        ["Investor-first alignment", "Commission-first incentives"],
+        ["Starts with your goals", "Starts with available inventory"],
+        ["Education before recommendations", "Pressure to close quickly"],
+        ["Independent legal, tax & mortgage advisors", "Professionals tied to the sale"],
+        ["Compensation disclosed upfront", "Fees unclear until late"],
+        ["Support from first call to title registration", "Involvement ends at signing"],
       ];
       return html`
-        <section id="approach">
+        <section className="cream" id="approach">
           <div className="wrap split">
             <div>
               <div className="eyebrow">Our Approach</div>
               <div className="section-head" style=${{ marginBottom: 0 }}>
-                <h2>Not a real estate agency. A trusted connection.</h2>
-                <p>We are building a lasting network around people, not listings. Our role is to understand each investor's goals, source the right opportunities in Israel, and stand beside them from first conversation to closing and beyond.</p>
+                <h2>An advisor for the journey, not a listings portfolio.</h2>
+                <p>Buying property in another country raises real questions — about law, tax, financing, currency and community. Gesher's role is to help you answer them clearly, then connect you with the independent Israeli professionals who protect your interests.</p>
               </div>
             </div>
             <div className="compare">
-              <div className="compare-row head"><div>Gesher</div><div>Traditional agency</div></div>
+              <div className="compare-row head"><div>Gesher</div><div>Listings-first approach</div></div>
               ${rows.map(([us, them]) => html`
                 <div className="compare-row" key=${us}><div className="us">${us}</div><div className="them">${them}</div></div>`)}
             </div>
@@ -233,13 +462,13 @@
 
     function Pillars() {
       const items = [
-        ["Investor Relationships", "A private, vetted community of qualified investors who value discretion, trust and long-term partnership."],
-        ["Deal Sourcing", "Rigorous on-the-ground selection of residential and commercial opportunities across Israel."],
-        ["Developer Partnerships", "Direct relationships with established Israeli developers, giving members early and preferred access."],
-        ["Property Sales", "End-to-end guidance through acquisition, with trusted legal, tax and financing partners on both sides."],
+        ["Market Education", "Clear, honest guidance on cities, property types, costs and the realities of buying in Israel from abroad."],
+        ["Goal-Based Planning", "We translate your objectives, budget and timeline into a focused brief before any property is considered."],
+        ["Professional Network", "Introductions to vetted, independent Israeli lawyers, cross-border tax advisors and mortgage brokers."],
+        ["Remote Purchase Support", "Coordination of viewings, documents, signing and transfers so you can buy confidently from the US."],
       ];
       return html`
-        <section style=${{ paddingTop: 0 }}>
+        <section className="cream" style=${{ paddingTop: 0 }}>
           <div className="wrap">
             <div className="pillars">
               ${items.map(([t, d], i) => html`
@@ -253,165 +482,551 @@
         </section>`;
     }
 
+    // ---------- Budget explorer (illustrative only — NOT inventory) ----------
+    const TIERS = [
+      {
+        label: "$250,000", value: "$250k",
+        summary: "At this level, buyers typically look beyond the central region, toward established cities in the north and south with more accessible pricing.",
+        markets: [
+          ["Be'er Sheva", "University and hospital city in the Negev"],
+          ["Haifa", "Older buildings in select neighborhoods"],
+          ["Karmiel & Afula", "Northern cities with a quieter pace"],
+          ["Ashkelon", "Coastal city in the south — older stock"],
+        ],
+        types: ["Older 2–3 room apartments", "Walk-up buildings without elevators", "Smaller units suited to long-term rental"],
+        notes: ["Purchase tax and transaction costs weigh more heavily as a share of a smaller budget", "Rental demand is highly local — near universities, hospitals and employers", "Plan for renovation in older buildings"],
+      },
+      {
+        label: "$400,000", value: "$400k",
+        summary: "This range opens up family-sized apartments in many established cities and some newer construction outside the most expensive markets.",
+        markets: [
+          ["Haifa", "Broader choice, including Carmel-area buildings"],
+          ["Ashdod & Ashkelon", "Coastal cities with newer neighborhoods"],
+          ["Be'er Sheva", "Newer projects and larger units"],
+          ["Hadera", "Growing coastal city between Tel Aviv and Haifa"],
+        ],
+        types: ["3–4 room apartments", "New-build or off-plan units in developing areas", "Smaller units in some commuter cities"],
+        notes: ["Off-plan purchases require careful review of statutory buyer protections", "Compare distance to transit and the central region", "Factor in building fees (va'ad bayit) and municipal tax (arnona)"],
+      },
+      {
+        label: "$600,000", value: "$600k",
+        summary: "Buyers often begin to consider Jerusalem's outer neighborhoods and popular Anglo communities, typically in smaller or older apartments.",
+        markets: [
+          ["Jerusalem", "Outer neighborhoods — e.g. Gilo, Pisgat Ze'ev, Armon HaNatziv"],
+          ["Beit Shemesh", "Established English-speaking communities"],
+          ["Netanya", "Coastal city with a large Anglo population"],
+          ["Modi'in", "Planned city between Jerusalem and Tel Aviv — smaller units"],
+        ],
+        types: ["3–4 room apartments in established buildings", "Family apartments in community-oriented cities", "Some new construction in growing neighborhoods"],
+        notes: ["Community, synagogue and school fit often drive the decision", "Lock-and-leave practicality matters for part-year owners", "Compare new-build delivery timelines against your plans"],
+      },
+      {
+        label: "$1M+", value: "$1M+",
+        summary: "Higher budgets bring the central markets into view, from larger family apartments to premium units in sought-after neighborhoods.",
+        markets: [
+          ["Jerusalem", "Central neighborhoods — e.g. Baka, German Colony, Rehavia"],
+          ["Tel Aviv", "Apartments across a wide range of neighborhoods"],
+          ["Herzliya & Ra'anana", "Sought-after coastal and suburban markets"],
+          ["Modi'in", "Larger family apartments and garden units"],
+        ],
+        types: ["Larger apartments and garden units", "Penthouses and premium new developments", "Cottages and semi-detached homes in some suburbs"],
+        notes: ["Prices vary sharply by street, view and building", "Higher purchase tax brackets may apply to larger transactions", "Independent appraisal and legal review are especially important"],
+      },
+    ];
+
+    function BudgetExplorer({ onStart }) {
+      const [i, setI] = useState(1);
+      const t = TIERS[i];
+      return html`
+        <section id="budget">
+          <div className="wrap">
+            <div className="section-head">
+              <div className="eyebrow">Budget Explorer</div>
+              <h2>What can your budget buy in Israel?</h2>
+              <p>Explore how different budgets translate into potential property options across Israel's major residential markets.</p>
+            </div>
+            <div className="pills" role="group" aria-label="Select a budget">
+              ${TIERS.map((x, k) => html`
+                <button key=${x.value} className="pill" aria-pressed=${k === i} onClick=${() => setI(k)}>${x.label}</button>`)}
+            </div>
+            <div className="budget-card" aria-live="polite">
+              <div className="budget-top">
+                <h3>Around ${t.label}</h3>
+                <span className="tag">Illustrative market overview</span>
+              </div>
+              <div style=${{ padding: "22px 36px 0" }}><p style=${{ margin: "0 0 22px", color: "var(--muted)" }}>${t.summary}</p></div>
+              <div className="budget-body">
+                <div>
+                  <h4>Markets worth exploring</h4>
+                  <ul>${t.markets.map(([m, d]) => html`<li key=${m}><strong>${m}</strong><span>${d}</span></li>`)}</ul>
+                </div>
+                <div>
+                  <h4>Property types to consider</h4>
+                  <ul>${t.types.map((x) => html`<li key=${x}>${x}</li>`)}</ul>
+                </div>
+                <div>
+                  <h4>Things to weigh</h4>
+                  <ul>${t.notes.map((x) => html`<li key=${x}>${x}</li>`)}</ul>
+                </div>
+              </div>
+              <div className="budget-foot">
+                <p><strong>Illustrative only.</strong> These are general market examples to support education — not listings, guaranteed inventory, valuations or a forecast of returns. Prices vary by neighborhood, building and condition, change over time, and are affected by the USD/ILS exchange rate. Budgets should also allow for purchase tax, legal and other transaction costs.</p>
+                <button className="btn btn-gold" onClick=${() => onStart({ budget: t.value })}>Discuss your budget</button>
+              </div>
+            </div>
+          </div>
+        </section>`;
+    }
+
+    // ---------- Buying journey ----------
+    const JOURNEY = [
+      ["Introductory consultation", "A conversation about your goals, budget, timeline and how you plan to use the property."],
+      ["Property Brief & strategy", "We define target locations, property types and a realistic all-in budget."],
+      ["Advisors & financing", "You engage your own Israeli lawyer and, as needed, a mortgage broker and cross-border tax advisor."],
+      ["Search & viewings", "Virtual tours and on-the-ground viewings of properties that fit your brief."],
+      ["Due diligence", "Your lawyer reviews ownership rights, permits, liens and contract terms."],
+      ["Contract & payments", "Signing — in person or by power of attorney — and payments on the agreed schedule."],
+      ["Handover & inspection", "A professional inspection before you receive the keys."],
+      ["Title registration", "Your lawyer registers your rights and completes the required tax filings."],
+    ];
+
     function Process() {
-      const steps = [
-        ["Request", "Submit a confidential request to join. Membership is by invitation and qualification."],
-        ["Introduction", "A private conversation to understand your goals, timeline and investment profile."],
-        ["Curated Access", "Receive selected opportunities matched to your criteria, with full diligence materials."],
-        ["Partnership", "We guide you through acquisition and remain your trusted partner in Israel long term."],
-      ];
       return html`
         <section className="dark" id="process">
           <div className="wrap">
             <div className="section-head">
-              <div className="eyebrow">How It Works</div>
-              <h2>A private, considered process.</h2>
-              <p>Every member relationship begins with a conversation, not a sales pitch.</p>
+              <div className="eyebrow">The Buying Journey</div>
+              <h2>From first conversation to title registration.</h2>
+              <p>A clear path, with independent professionals representing you at every step that matters.</p>
             </div>
             <div className="steps">
-              ${steps.map(([t, d]) => html`<div className="step" key=${t}><h3>${t}</h3><p>${d}</p></div>`)}
+              ${JOURNEY.map(([t, d]) => html`<div className="step" key=${t}><h3>${t}</h3><p>${d}</p></div>`)}
             </div>
           </div>
         </section>`;
     }
 
-    function Communities() {
-      const regions = [
-        ["NY", "New York", "Manhattan, Brooklyn, Long Island & Westchester"],
-        ["NJ", "New Jersey", "Bergen County, Lakewood, Teaneck & beyond"],
-        ["FL", "Florida", "Miami, Boca Raton, Palm Beach & Aventura"],
-        ["CA", "California", "Los Angeles, Beverly Hills & the Bay Area"],
-      ];
+    // ---------- Buyer's Guide (FAQ) ----------
+    const FAQ_CATS = [
+      { id: "A", name: "Financial & Investment" },
+      { id: "B", name: "Trust & Remote Buying" },
+      { id: "C", name: "Lifestyle & Personal Purchase" },
+      { id: "D", name: "Practical Transaction" },
+    ];
+    const FAQS = [
+      { c: "A", q: "Is buying property in Israel a good investment?",
+        p: ["It depends on what you want the property to do for you. No one can promise that a property will appreciate or produce a specific rental yield — and you should be cautious of anyone who does.",
+            "A more useful question is whether a particular purchase fits your objectives, budget, time horizon and intended use. We help you weigh:"],
+        list: ["Whether you prioritize personal use, rental income, long-term holding, or a mix",
+               "Total acquisition and holding costs, not just the purchase price",
+               "Liquidity — Israeli property can take time to sell, and transaction costs are significant",
+               "Currency exposure between the US dollar and the Israeli shekel",
+               "Local rental demand, regulation and management requirements"],
+        after: ["Many American buyers combine financial and personal motivations. Being clear about that balance up front leads to better decisions."] },
+      { c: "A", q: "How much money do I actually need to buy property in Israel?",
+        p: ["Plan for meaningfully more than the purchase price. A realistic budget usually includes:"],
+        list: ["Purchase price — which varies widely by city, neighborhood, building age and size.",
+               "Purchase tax (Mas Rechisha) — buyers who do not qualify for resident single-home rates generally pay investor rates, which have historically been in the range of roughly 8%–10% of the price. New immigrants (Olim) may qualify for reduced rates within a defined window.",
+               "Legal fees — paid to your own Israeli lawyer, commonly around 0.5%–1% of the price plus VAT.",
+               "Brokerage fees — where a broker is involved, often around 2% of the price plus VAT.",
+               "Mortgage costs — appraisal, bank and broker fees, and required insurance if you finance.",
+               "Currency conversion — exchange-rate spreads and wire costs on dollars converted to shekels.",
+               "Ongoing costs — municipal tax (arnona), building fees (va'ad bayit), insurance, maintenance and, if renting, property management."],
+        after: ["Rates and thresholds change. Your Israeli lawyer and tax advisor should confirm exact figures for your situation before you commit."] },
+      { c: "A", q: "Can Americans buy property in Israel?",
+        p: ["Yes. Foreign nationals — including Americans who are not Israeli citizens — can buy most privately held residential property in Israel.",
+            "Much of Israel's land is state-owned and managed by the Israel Land Authority, with homes held under long-term leases. These rights are generally transferable to foreign buyers, but certain land categories and transactions carry restrictions or require approvals. Your Israeli lawyer should confirm the specific rights attached to any property before you sign."] },
+      { c: "A", q: "Can I finance an Israeli property with a mortgage?",
+        p: ["Often, yes. Israeli banks do lend to foreign residents, but terms depend on your residency status, income, existing liabilities, credit profile and each lender's rules."],
+        list: ["Non-residents are typically limited to lower loan-to-value ratios than Israeli residents — financing of up to around half the property value is common.",
+               "Lenders will verify US income and assets, which can take time.",
+               "Israeli mortgages usually combine several tracks (fixed, prime-linked, CPI-linked) that work differently from US products.",
+               "Some buyers instead explore financing secured against assets in the US."],
+        after: ["We recommend speaking with an independent Israeli mortgage broker early — ideally before viewing properties — so your search reflects what you can realistically finance."] },
+
+      { c: "B", q: "How do I buy property in Israel while living in the United States?",
+        p: ["Most of the process can be handled from the US. A remote purchase typically involves:"],
+        list: ["Remote introductory and planning meetings",
+               "Virtual tours and on-the-ground viewings by a local representative, plus in-person visits whenever you choose",
+               "Your own independent Israeli lawyer to review documents and represent you",
+               "A power of attorney so documents can be signed on your behalf — or signing abroad with the required notarization or consular certification",
+               "International wire transfers, coordinated with your lawyer and bank so funds move safely and on schedule",
+               "A handover inspection by a qualified inspector before you take possession"] },
+      { c: "B", q: "How do I know the property and developer are legitimate?",
+        p: ["Through independent due diligence. Before you sign, your lawyer should review:"],
+        list: ["Ownership registration — the Land Registry (Tabu), Israel Land Authority or relevant housing company records — to confirm who holds the rights",
+               "Mortgages, liens, caveats (he'arot azhara) and legal claims against the property",
+               "Building permits, and whether the property as built matches approved plans",
+               "For new construction: the buyer protections required under Israel's Sale (Apartments) Law — commonly bank guarantees — for every payment made to the developer",
+               "The developer's track record: completed projects, delivery history and financial standing",
+               "Contract terms, the payment schedule and any linkage to the construction input index"],
+        after: ["This review should be performed by an independent Israeli real estate lawyer who represents you — not the seller or the developer."] },
+      { c: "B", q: "Who represents my interests during the transaction?",
+        p: ["You should always have your own independent Israeli lawyer. Gesher's role is advisory: we help you clarify your goals, understand the market, evaluate options, and coordinate the independent legal, tax and mortgage professionals who act for you.",
+            "You should also know exactly how we are compensated. Before you commit to anything, we will tell you in writing whether our fees are paid by you, by a developer or seller, or both — and how that could affect any option we present.",
+            "Your lawyer, tax advisor and mortgage broker are engaged by you and owe their duties to you."] },
+
+      { c: "C", q: "Which Israeli city or neighborhood is right for me?",
+        p: ["The right location depends on how you plan to use the property. We help you match neighborhoods to criteria such as:"],
+        list: ["Religious and community fit — synagogues, community life and Shabbat atmosphere",
+               "Schools and programs for children or grandchildren",
+               "Proximity to family and friends already in Israel",
+               "Public transportation and access to Ben Gurion Airport",
+               "Beach, urban, suburban or hillside lifestyle",
+               "Rental demand, if you plan to rent",
+               "Budget and the property types available"] },
+      { c: "C", q: "Should I buy an investment property, a second home, or a future residence?",
+        p: ["Each path leads to different choices about location, property type, financing and taxes. That is why Gesher starts with your goals, before looking at specific properties."],
+        list: ["Investment — focus on total cost, rental demand, management and exit options",
+               "Second home — focus on location for your visits, lock-and-leave practicality and community",
+               "Future residence — focus on long-term livability, schools, healthcare and Aliyah-related tax timing"],
+        after: ["Many buyers combine goals — for example, renting out a future home until they move. Planning for that from the start avoids costly changes later."] },
+      { c: "C", q: "Can I purchase a property now and move to Israel later?",
+        p: ["Yes, and many buyers do. But it is important to understand that owning property in Israel does not grant Israeli residency, citizenship or Aliyah status. Those are governed by separate immigration rules — principally the Law of Return — and handled through entirely separate processes.",
+            "Timing can matter for tax: new immigrants may be entitled to reduced purchase tax on a home bought within certain windows around their Aliyah. Discuss timing with an Israeli tax advisor before you buy."] },
+
+      { c: "D", q: "What taxes will I pay in Israel and the United States?",
+        p: ["Owning Israeli property creates obligations in both countries. In general terms:"],
+        list: ["Israel — purchase tax when you buy; tax on rental income (with several reporting tracks); and capital gains tax (Mas Shevach) when you sell, subject to exemptions that may or may not apply to you.",
+               "United States — US citizens and residents are taxed on worldwide income, so Israeli rental income and gains on sale must be reported on your US return. Foreign tax credits and the US–Israel tax treaty may reduce double taxation.",
+               "Reporting — Israeli bank accounts used for the purchase or rent may trigger FBAR (FinCEN 114) and FATCA (Form 8938) reporting. Holding property through a company or trust can bring additional filings."],
+        after: ["Because the two systems interact, we strongly recommend engaging a cross-border tax advisor familiar with both before you buy."] },
+      { c: "D", q: "What happens after I decide to buy?",
+        p: ["A typical purchase follows these steps. Timing varies by property type and financing."],
+        timeline: true },
+    ];
+
+    function Highlight({ text, q }) {
+      if (!q) return text;
+      const i = text.toLowerCase().indexOf(q.toLowerCase());
+      if (i < 0) return text;
+      return html`${text.slice(0, i)}<mark>${text.slice(i, i + q.length)}</mark>${text.slice(i + q.length)}`;
+    }
+
+    function QA({ item, n, open, onToggle, q }) {
+      const id = "faq-" + n;
       return html`
-        <section id="communities">
+        <div className=${"qa" + (open ? " open" : "")}>
+          <button aria-expanded=${open} aria-controls=${id} onClick=${onToggle}>
+            <span><span className="qn">${String(n).padStart(2, "0")}</span><${Highlight} text=${item.q} q=${q} /></span>
+            <span className="chev" aria-hidden="true"></span>
+          </button>
+          ${open && html`
+            <div className="answer" id=${id}>
+              ${item.p.map((t, k) => html`<p key=${k}><${Highlight} text=${t} q=${q} /></p>`)}
+              ${item.list && html`<ul>${item.list.map((t, k) => html`<li key=${k}><${Highlight} text=${t} q=${q} /></li>`)}</ul>`}
+              ${item.timeline && html`
+                <ol className="mini">${JOURNEY.map(([t, d]) => html`<li key=${t}><strong>${t}.</strong> ${d}</li>`)}</ol>`}
+              ${item.after && item.after.map((t, k) => html`<p key=${"a" + k}><${Highlight} text=${t} q=${q} /></p>`)}
+            </div>`}
+        </div>`;
+    }
+
+    function Guide() {
+      const [cat, setCat] = useState("all");
+      const [q, setQ] = useState("");
+      const [open, setOpen] = useState(1);
+      const numbered = FAQS.map((f, i) => ({ ...f, n: i + 1 }));
+      const term = q.trim();
+      const matches = numbered.filter((f) => {
+        if (cat !== "all" && f.c !== cat) return false;
+        if (!term) return true;
+        const hay = [f.q, ...f.p, ...(f.list || []), ...(f.after || []), ...(f.timeline ? JOURNEY.flat() : [])].join(" ").toLowerCase();
+        return hay.includes(term.toLowerCase());
+      });
+      return html`
+        <section className="cream" id="guide">
           <div className="wrap">
             <div className="section-head">
-              <div className="eyebrow">Our Communities</div>
-              <h2>Rooted in the heart of American Jewish life.</h2>
-              <p>We are launching with investors in four of the most vibrant Jewish communities in the United States.</p>
+              <div className="eyebrow">Buyer's Guide</div>
+              <h2>The 12 questions American buyers ask most.</h2>
+              <p>Straight answers to help you plan. This is general information, not legal, tax or financial advice — your own Israeli and US professionals should confirm what applies to you.</p>
             </div>
-            <div className="regions">
-              ${regions.map(([a, n, d]) => html`
-                <div className="region" key=${a}><div className="abbr">${a}</div><h3>${n}</h3><p>${d}</p></div>`)}
+            <div className="guide-bar">
+              <div className="cats" role="group" aria-label="Filter by category">
+                <button className="cat" aria-pressed=${cat === "all"} onClick=${() => setCat("all")}>All questions</button>
+                ${FAQ_CATS.map((c) => html`<button key=${c.id} className="cat" aria-pressed=${cat === c.id} onClick=${() => setCat(c.id)}>${c.name}</button>`)}
+              </div>
+              <div className="search">
+                <input type="search" placeholder="Search the guide (e.g. mortgage, tax, Tabu)" aria-label="Search the buyer's guide"
+                  value=${q} onChange=${(e) => setQ(e.target.value)} />
+              </div>
             </div>
+            ${matches.length === 0 && html`<div className="empty">No questions match “${term}”. Try another word, or <a href="#brief">ask us directly</a>.</div>`}
+            ${FAQ_CATS.map((c) => {
+              const items = matches.filter((f) => f.c === c.id);
+              if (!items.length) return null;
+              return html`
+                <div className="faq-group" key=${c.id}>
+                  <h3><small>${c.id}</small>${c.name} Concerns</h3>
+                  <div className="faq">
+                    ${items.map((f) => html`
+                      <${QA} key=${f.n} item=${f} n=${f.n} q=${term}
+                        open=${open === f.n || (!!term && matches.length <= 3)}
+                        onToggle=${() => setOpen(open === f.n ? 0 : f.n)} />`)}
+                  </div>
+                </div>`;
+            })}
           </div>
         </section>`;
     }
 
-    function ApplyForm() {
-      const empty = { name: "", email: "", phone: "", state: "", range: "", interest: "", message: "", qualified: false, botcheck: false };
-      const [form, setForm] = useState(empty);
+    // ---------- Israel Property Brief (multi-step lead form) ----------
+    const EMPTY_BRIEF = {
+      name: "", email: "", phone: "",
+      objective: "", budget: "", budgetCustom: "",
+      locations: [], otherLocation: "", timeline: "", fromUS: "",
+      consent: false, company: "",
+    };
+
+    function validateStep(step, f) {
+      const e = {};
+      if (step === 0) {
+        if (f.name.trim().length < 2) e.name = "Please enter your full name.";
+        if (!EMAIL_RE.test(f.email.trim())) e.email = "Please enter a valid email address.";
+        if (f.phone.trim() && !/^[+()\d\s.\-]{7,25}$/.test(f.phone.trim())) e.phone = "Please enter a valid phone number, or leave it blank.";
+      }
+      if (step === 1) {
+        if (!f.objective) e.objective = "Please choose your primary objective.";
+        if (!f.budget) e.budget = "Please choose an approximate budget.";
+        if (f.budget === "Custom" && !f.budgetCustom.trim()) e.budgetCustom = "Please describe your budget.";
+      }
+      if (step === 2) {
+        if (!f.locations.length && !f.otherLocation.trim()) e.locations = "Choose at least one location, or “Not sure yet”.";
+        if (!f.timeline) e.timeline = "Please choose a timeline.";
+        if (!f.fromUS) e.fromUS = "Please let us know.";
+        if (!f.consent) e.consent = "Please confirm so we can contact you.";
+      }
+      return e;
+    }
+
+    function Choice({ group, value, current, onPick, children }) {
+      return html`
+        <button type="button" className="choice" role="radio" aria-checked=${current === value}
+          onClick=${() => onPick(value)} data-group=${group}>${children || value}</button>`;
+    }
+
+    function BriefForm({ prefill }) {
+      const [f, setF] = useState(EMPTY_BRIEF);
+      const [step, setStep] = useState(0);
+      const [errs, setErrs] = useState({});
       const [status, setStatus] = useState("idle"); // idle | sending | done | error
-      const [error, setError] = useState("");
+      const [msg, setMsg] = useState("");
+      const topRef = useRef(null);
 
-      const set = (k) => (e) => setForm({ ...form, [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value });
+      useEffect(() => {
+        if (!prefill.n) return;
+        setF((x) => ({ ...x, ...(prefill.objective ? { objective: prefill.objective } : {}), ...(prefill.budget ? { budget: prefill.budget } : {}) }));
+        if (status === "done") setStatus("idle");
+      }, [prefill.n]);
 
-      async function onSubmit(e) {
-        e.preventDefault();
-        if (form.botcheck) return;
-        setStatus("sending"); setError("");
-        try {
-          const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({
-              access_key: WEB3FORMS_ACCESS_KEY,
-              subject: `New Invitation Request — ${form.name} (${form.state})`,
-              from_name: "Gesher Investor Network",
-              name: form.name,
-              email: form.email,
-              phone: form.phone,
-              state: form.state,
-              investment_range: form.range,
-              primary_interest: form.interest,
-              qualified_investor: form.qualified ? "Yes" : "No",
-              message: form.message,
-              botcheck: false,
-            }),
-          });
-          const data = await res.json();
-          if (data.success) { setStatus("done"); setForm(empty); }
-          else { setStatus("error"); setError(data.message || "Something went wrong. Please try again."); }
-        } catch (err) {
-          setStatus("error"); setError("Network error. Please check your connection and try again.");
+      const set = (k, v) => { setF((x) => ({ ...x, [k]: v })); setErrs((x) => ({ ...x, [k]: undefined })); };
+      const toggleLoc = (loc) => {
+        const has = f.locations.includes(loc);
+        let next = has ? f.locations.filter((l) => l !== loc) : [...f.locations, loc];
+        if (!has && loc === "Not sure yet") next = ["Not sure yet"];
+        else if (!has) next = next.filter((l) => l !== "Not sure yet");
+        set("locations", next);
+      };
+
+      const go = (to) => { setStep(to); topRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }); };
+      const next = () => {
+        const e = validateStep(step, f);
+        setErrs(e);
+        if (Object.keys(e).length === 0) go(step + 1);
+      };
+
+      async function submit(ev) {
+        ev.preventDefault();
+        if (step < 2) return next();
+        const e = validateStep(2, f);
+        setErrs(e);
+        if (Object.keys(e).length) return;
+        if (f.company) { setStatus("done"); return; } // honeypot
+
+        const locations = [...f.locations, ...(f.otherLocation.trim() ? [f.otherLocation.trim()] : [])];
+        const payload = {
+          name: f.name.trim(), email: f.email.trim(), phone: f.phone.trim(),
+          objective: f.objective, budget: f.budget, budgetCustom: f.budgetCustom.trim(),
+          locations, timeline: f.timeline, fromUS: f.fromUS, consent: f.consent, company: f.company,
+        };
+        setStatus("sending"); setMsg("");
+
+        const sheet = fetch(LEADS_ENDPOINT, {
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+        }).then(async (r) => {
+          const data = await r.json().catch(() => ({}));
+          if (!r.ok || !data.ok) { const err = new Error(data.error || "Lead service error"); err.fields = data.fields; err.status = r.status; throw err; }
+          return data;
+        });
+
+        const email = WEB3FORMS_ACCESS_KEY ? fetch("https://api.web3forms.com/submit", {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: `New Israel Property Brief — ${payload.name} (${payload.objective}, ${payload.budget === "Custom" ? payload.budgetCustom : payload.budget})`,
+            from_name: "Gesher Website",
+            name: payload.name, email: payload.email, phone: payload.phone || "—",
+            objective: payload.objective,
+            budget: payload.budget === "Custom" ? "Custom: " + payload.budgetCustom : payload.budget,
+            locations: locations.join(", "), timeline: payload.timeline, purchasing_from_us: payload.fromUS,
+            botcheck: false,
+          }),
+        }).then((r) => r.json()).then((d) => { if (!d.success) throw new Error(d.message); return d; }) : Promise.reject(new Error("disabled"));
+
+        const [s, m] = await Promise.allSettled([sheet, email]);
+        if (s.status === "rejected" && s.reason.status === 400) {
+          setStatus("error");
+          setMsg(s.reason.message || "Please check your answers and try again.");
+          if (s.reason.fields) setErrs(s.reason.fields);
+          return;
+        }
+        if (s.status === "fulfilled" || m.status === "fulfilled") {
+          setStatus("done"); setF(EMPTY_BRIEF); setStep(0); setErrs({});
+        } else {
+          setStatus("error");
+          setMsg("We couldn't send your brief. Please check your connection and try again.");
         }
       }
 
       if (status === "done") {
         return html`
-          <div className="card" style=${{ background: "#fff", border: "1px solid var(--line)", padding: 40 }}>
+          <div className="card" ref=${topRef}>
             <div className="success">
-              <div className="eyebrow">Request Received</div>
+              <div className="eyebrow">Brief Received</div>
               <h3>Thank you.</h3>
-              <p>A member of our team will be in touch personally and confidentially within a few business days.</p>
-              <button className="btn btn-gold" style=${{ marginTop: 12 }} onClick=${() => setStatus("idle")}>Submit another request</button>
+              <p>A member of our team will review your brief and reach out personally within a few business days to explore your options.</p>
+              <button className="btn btn-gold" style=${{ marginTop: 12 }} onClick=${() => setStatus("idle")}>Submit another brief</button>
             </div>
           </div>`;
       }
 
+      const E = (k) => errs[k] && html`<span className="ferr" role="alert">${errs[k]}</span>`;
+      const labels = ["About you", "Your goals", "Location & timing"];
+
       return html`
-        <form className="card" onSubmit=${onSubmit}>
-          <input type="checkbox" className="hp" tabIndex="-1" autoComplete="off" checked=${form.botcheck} onChange=${set("botcheck")} aria-hidden="true" />
-          <div className="row">
-            <div className="field"><label htmlFor="name">Full name</label>
-              <input id="name" required value=${form.name} onChange=${set("name")} autoComplete="name" /></div>
-            <div className="field"><label htmlFor="email">Email</label>
-              <input id="email" type="email" required value=${form.email} onChange=${set("email")} autoComplete="email" /></div>
+        <form className="card" onSubmit=${submit} noValidate ref=${topRef}>
+          <div className="hp" aria-hidden="true">
+            <label>Company<input tabIndex="-1" autoComplete="off" value=${f.company} onChange=${(e) => set("company", e.target.value)} /></label>
           </div>
-          <div className="row">
-            <div className="field"><label htmlFor="phone">Phone</label>
-              <input id="phone" type="tel" value=${form.phone} onChange=${set("phone")} autoComplete="tel" /></div>
-            <div className="field"><label htmlFor="state">State</label>
-              <select id="state" required value=${form.state} onChange=${set("state")}>
-                <option value="" disabled>Select…</option>
-                <option>New York</option><option>New Jersey</option><option>Florida</option><option>California</option><option>Other</option>
-              </select></div>
+          <div className="progress" aria-hidden="true">${labels.map((_, k) => html`<span key=${k} className=${k <= step ? "on" : ""}></span>`)}</div>
+          <div className="step-label">Step ${step + 1} of 3 · <b>${labels[step]}</b></div>
+
+          ${step === 0 && html`
+            <div>
+              <div className="field"><label htmlFor="b-name">Full name</label>
+                <input id="b-name" className=${errs.name ? "bad" : ""} value=${f.name} onChange=${(e) => set("name", e.target.value)} autoComplete="name" />${E("name")}</div>
+              <div className="row">
+                <div className="field"><label htmlFor="b-email">Email</label>
+                  <input id="b-email" type="email" className=${errs.email ? "bad" : ""} value=${f.email} onChange=${(e) => set("email", e.target.value)} autoComplete="email" />${E("email")}</div>
+                <div className="field"><label htmlFor="b-phone">Phone / WhatsApp <span className="opt">(optional)</span></label>
+                  <input id="b-phone" type="tel" className=${errs.phone ? "bad" : ""} value=${f.phone} onChange=${(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="+1 …" />${E("phone")}</div>
+              </div>
+            </div>`}
+
+          ${step === 1 && html`
+            <div>
+              <div className="field"><span className="flabel" id="lbl-obj">Primary objective</span>
+                <div className="choices" role="radiogroup" aria-labelledby="lbl-obj">
+                  ${OBJECTIVES.map(([v, d]) => html`<${Choice} key=${v} group="objective" value=${v} current=${f.objective} onPick=${(x) => set("objective", x)}>${v}<small>${d}</small><//>`)}
+                </div>${E("objective")}</div>
+              <div className="field"><span className="flabel" id="lbl-bud">Approximate budget</span>
+                <div className="choices five" role="radiogroup" aria-labelledby="lbl-bud">
+                  ${BUDGETS.map((v) => html`<${Choice} key=${v} group="budget" value=${v} current=${f.budget} onPick=${(x) => set("budget", x)} />`)}
+                </div>${E("budget")}</div>
+              ${f.budget === "Custom" && html`
+                <div className="field"><label htmlFor="b-bc">Describe your budget</label>
+                  <input id="b-bc" className=${errs.budgetCustom ? "bad" : ""} value=${f.budgetCustom} maxLength="60" onChange=${(e) => set("budgetCustom", e.target.value)} placeholder="e.g. $750k–$850k, or ₪3M" />${E("budgetCustom")}</div>`}
+            </div>`}
+
+          ${step === 2 && html`
+            <div>
+              <div className="field"><span className="flabel" id="lbl-loc">Preferred locations <span className="opt">(choose any)</span></span>
+                <div className="chips" role="group" aria-labelledby="lbl-loc">
+                  ${LOCATIONS.map((l) => html`<button type="button" key=${l} className="chip" aria-pressed=${f.locations.includes(l)} onClick=${() => toggleLoc(l)}>${l}</button>`)}
+                </div>
+                <input aria-label="Other locations" style=${{ marginTop: 6 }} value=${f.otherLocation} maxLength="120" onChange=${(e) => set("otherLocation", e.target.value)} placeholder="Other places you're considering (optional)" />
+                ${E("locations")}</div>
+              <div className="field"><span className="flabel" id="lbl-time">Target timeline</span>
+                <div className="choices three" role="radiogroup" aria-labelledby="lbl-time">
+                  ${TIMELINES.map((v) => html`<${Choice} key=${v} group="timeline" value=${v} current=${f.timeline} onPick=${(x) => set("timeline", x)} />`)}
+                </div>${E("timeline")}</div>
+              <div className="field"><span className="flabel" id="lbl-us">Purchasing from the US?</span>
+                <div className="choices" role="radiogroup" aria-labelledby="lbl-us">
+                  ${["Yes", "No"].map((v) => html`<${Choice} key=${v} group="fromUS" value=${v} current=${f.fromUS} onPick=${(x) => set("fromUS", x)} />`)}
+                </div>${E("fromUS")}</div>
+              <label className="check">
+                <input type="checkbox" checked=${f.consent} onChange=${(e) => set("consent", e.target.checked)} />
+                <span>I agree to be contacted by Gesher about my enquiry. I understand Gesher provides general guidance and that legal, tax and mortgage advice comes from independent licensed professionals.</span>
+              </label>${E("consent")}
+            </div>`}
+
+          <div className="form-nav">
+            ${step > 0 && html`<button type="button" className="btn btn-line" onClick=${() => go(step - 1)}>Back</button>`}
+            <button className="btn btn-gold" type="submit" disabled=${status === "sending"}>
+              ${step < 2 ? "Continue" : status === "sending" ? "Sending…" : "Send my Property Brief"}
+            </button>
           </div>
-          <div className="row">
-            <div className="field"><label htmlFor="range">Investment range</label>
-              <select id="range" required value=${form.range} onChange=${set("range")}>
-                <option value="" disabled>Select…</option>
-                <option>$250K – $500K</option><option>$500K – $1M</option><option>$1M – $5M</option><option>$5M+</option>
-              </select></div>
-            <div className="field"><label htmlFor="interest">Primary interest</label>
-              <select id="interest" value=${form.interest} onChange=${set("interest")}>
-                <option value="">Select…</option>
-                <option>Residential</option><option>Commercial</option><option>Pre-construction / development</option><option>Personal / family home</option><option>Open to all</option>
-              </select></div>
-          </div>
-          <div className="field"><label htmlFor="message">Tell us about your goals</label>
-            <textarea id="message" value=${form.message} onChange=${set("message")} placeholder="Timeline, preferred cities in Israel, objectives…"></textarea></div>
-          <label className="check">
-            <input type="checkbox" required checked=${form.qualified} onChange=${set("qualified")} />
-            <span>I confirm I am a financially qualified investor and consent to being contacted confidentially.</span>
-          </label>
-          <button className="btn btn-gold" type="submit" disabled=${status === "sending"}>
-            ${status === "sending" ? "Sending…" : "Request an Invitation"}
-          </button>
-          ${status === "error" && html`<div className="status err" role="alert">${error}</div>`}
+          ${status === "error" && html`<div className="status err" role="alert">${msg}</div>`}
         </form>`;
     }
 
-    function Apply() {
+    function Brief({ prefill }) {
       return html`
-        <section className="apply" id="apply">
+        <section className="apply" id="brief">
           <div className="wrap apply-grid">
             <div className="apply-copy">
-              <div className="eyebrow">Membership</div>
+              <div className="eyebrow">Your Israel Property Brief</div>
               <div className="section-head" style=${{ marginBottom: 0 }}>
-                <h2>Request an invitation.</h2>
-                <p>Membership is limited and extended to financially qualified investors. All inquiries are handled personally and in strict confidence.</p>
+                <h2>Not sure where to start? Let's identify your options.</h2>
+                <p>Tell us what you are looking for, and our team will help you explore relevant Israeli locations, property types and purchasing approaches.</p>
               </div>
               <ul>
-                <li>Private introduction call with our team</li>
-                <li>Early access to curated developer opportunities</li>
-                <li>Trusted legal, tax and financing partners</li>
-                <li>Ongoing support in Israel after acquisition</li>
+                <li>Takes about two minutes — no obligation</li>
+                <li>A personal follow-up, not an automated sales sequence</li>
+                <li>Locations and property types matched to your goals</li>
+                <li>Introductions to independent legal, tax and mortgage professionals</li>
               </ul>
             </div>
-            <${ApplyForm} />
+            <${BriefForm} prefill=${prefill} />
           </div>
         </section>`;
+    }
+
+    function Consult({ onBook }) {
+      return html`
+        <section className="consult" id="consult">
+          <div className="wrap">
+            <div className="eyebrow">Private Introductory Consultation</div>
+            <h2>Let's explore what Israeli real estate could look like for you.</h2>
+            <p>Whether you are considering an investment, a second home or a future residence in Israel, start with a conversation about your objectives.</p>
+            <div className="ctas">
+              <button className="btn btn-gold" onClick=${onBook}>Schedule an introductory call</button>
+            </div>
+            <p className="fine">No obligation. We'll focus on your goals — not on selling you a property.</p>
+          </div>
+        </section>`;
+    }
+
+    function BookingModal({ onClose }) {
+      const closeRef = useRef(null);
+      useEffect(() => {
+        document.body.classList.add("modal-open");
+        closeRef.current?.focus();
+        const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        window.addEventListener("keydown", onKey);
+        return () => { document.body.classList.remove("modal-open"); window.removeEventListener("keydown", onKey); };
+      }, []);
+      return html`
+        <div className="backdrop" onClick=${(e) => { if (e.target === e.currentTarget) onClose(); }}>
+          <div className="modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
+            <div className="modal-head">
+              <h3 id="book-title">Schedule an introductory call</h3>
+              <button className="x" ref=${closeRef} onClick=${onClose} aria-label="Close">×</button>
+            </div>
+            <iframe src=${BOOKING_URL} title="Booking calendar" loading="lazy"></iframe>
+          </div>
+        </div>`;
     }
 
     function Footer() {
@@ -420,15 +1035,31 @@
           <div className="wrap">
             <div>
               <a className="brand" href="#top"><${BrandMark} /> Gesher</a>
-              <div style=${{ marginTop: 10 }}>© ${new Date().getFullYear()} Gesher Investor Network</div>
+              <div style=${{ marginTop: 10 }}>© ${new Date().getFullYear()} Gesher</div>
             </div>
-            <p className="disclaimer">This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security or real estate interest. Opportunities are made available only to qualified investors and are subject to individual review and applicable law.</p>
+            <p className="disclaimer">The information on this website is general and educational. It is not legal, tax, mortgage or investment advice, and it does not constitute an offer or solicitation. Gesher does not guarantee property appreciation, rental income or any financial outcome. Budget examples are illustrative market overviews, not listings or available inventory. Always consult independent, licensed professionals in Israel and the United States before making a purchase decision.</p>
           </div>
         </footer>`;
     }
 
     function App() {
-      return html`<${Nav} /><${Hero} /><${Approach} /><${Pillars} /><${Process} /><${Communities} /><${Apply} /><${Footer} />`;
+      const [prefill, setPrefill] = useState({ n: 0 });
+      const [booking, setBooking] = useState(false);
+      const startBrief = (patch) => { setPrefill((p) => ({ ...patch, n: p.n + 1 })); scrollTo("brief"); };
+      const onBook = () => (BOOKING_URL ? setBooking(true) : scrollTo("brief"));
+      return html`
+        <${Nav} />
+        <${Hero} onBook=${onBook} />
+        <${Paths} onStart=${startBrief} />
+        <${Approach} />
+        <${Pillars} />
+        <${BudgetExplorer} onStart=${startBrief} />
+        <${Process} />
+        <${Guide} />
+        <${Brief} prefill=${prefill} />
+        <${Consult} onBook=${onBook} />
+        <${Footer} />
+        ${booking && html`<${BookingModal} onClose=${() => setBooking(false)} />`}`;
     }
 
     ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
